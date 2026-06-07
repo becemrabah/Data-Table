@@ -1,4 +1,13 @@
 <div class="table-wrapper">
+  <div class="toolbar">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
+
+    <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+      <option *ngFor="let size of pageSizeOptions" [value]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
   <div *ngIf="loading" class="loading">Loading...</div>
   <table *ngIf="!loading">
     <thead>

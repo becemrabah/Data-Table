@@ -20,7 +20,19 @@ export class DataTableComponent<T extends Record<string, any>> {
   pageSizeOptions = [10, 25, 50];
   sortKey: keyof T | null = null;
   sortDirection: 'asc' | 'desc' = 'asc';
+  searchTerm = '';
 
+  get filteredData(): T[] {
+    if (!this.searchTerm.trim()) return this.data;
+
+    const term = this.searchTerm.toLowerCase();
+
+    return this.data.filter((row) =>
+      Object.values(row).some((val) =>
+        String(val).toLowerCase().includes(term),
+      ),
+    );
+  }
   sort(column: keyof T): void {
     if (this.sortKey === column) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -30,9 +42,9 @@ export class DataTableComponent<T extends Record<string, any>> {
     }
   }
   get sortedData(): T[] {
-    if (!this.sortKey) return this.data;
+    if (!this.sortKey) return this.filteredData;
 
-    return [...this.data].sort((a, b) => {
+    return [...this.filteredData].sort((a, b) => {
       const aValue = a[this.sortKey!];
       const bValue = b[this.sortKey!];
 
