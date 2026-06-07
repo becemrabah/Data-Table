@@ -1,0 +1,49 @@
+$border-color: #e5e7eb;
+$bg-header: #f9fafb;
+$bg-hover: #f3f4f6;
+$text-muted: #6b7280;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+
+  th,
+  td {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  th {
+    background: $bg-header;
+    font-weight: 600;
+    color: $text-muted;
+    border-bottom: 2px solid $border-color;
+    user-select: none;
+
+    span {
+      margin-left: 0.25rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $border-color;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: $bg-hover;
+    }
+  }
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: $text-muted;
+  font-size: 0.875rem;
+  border: 1px dashed $border-color;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
