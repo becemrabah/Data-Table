@@ -1,5 +1,5 @@
 <div class="table-wrapper">
-  <div class="toolbar">
+  <div class="toolbar" [style.gap]="tokens.spacing">
     <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
 
     <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
@@ -26,8 +26,18 @@
           <ng-container *ngIf="col.isBadge; else defaultCell">
             <span
               class="badge"
-              [class.active]="row[col.key] === 'Active'"
-              [class.inactive]="row[col.key] === 'Inactive'"
+              [style.background-color]="
+                row[col.key] === 'Active'
+                  ? tokens.successBackground
+                  : tokens.dangerBackground
+              "
+              [style.color]="
+                row[col.key] === 'Active'
+                  ? tokens.successColor
+                  : tokens.dangerColor
+              "
+              [style.border-radius]="tokens.borderRadius"
+              [style.padding]="tokens.spacing"
             >
               {{ row[col.key] }}
             </span>
@@ -42,7 +52,7 @@
   <div *ngIf="!loading && sortedData.length === 0" class="empty">
     No data found
   </div>
-  <div class="pagination">
+  <div class="pagination" [style.gap]="tokens.spacing">
     <button (click)="prevPage()">Prev</button>
     <span>{{ currentPage }} / {{ totalPages }}</span>
     <button (click)="nextPage()">Next</button>

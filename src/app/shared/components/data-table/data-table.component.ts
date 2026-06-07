@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TableColumn } from '../../../models/table-column.interface';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TableTokens } from '../../../models/table-tokens.interface';
 
 @Component({
   selector: 'app-data-table',
@@ -14,7 +15,18 @@ export class DataTableComponent<T extends Record<string, any>> {
   @Input() data: T[] = [];
   @Input() columns: TableColumn<T>[] = [];
   @Input() loading = false;
+  @Input() tokens: TableTokens = {
+    primaryColor: '#2563eb',
 
+    successBackground: '#dcfce7',
+    successColor: '#15803d',
+
+    dangerBackground: '#fee2e2',
+    dangerColor: '#b91c1c',
+
+    spacing: '0.625rem',
+    borderRadius: '9999px',
+  };
   currentPage = 1;
   pageSize = 10;
   pageSizeOptions = [10, 25, 50];

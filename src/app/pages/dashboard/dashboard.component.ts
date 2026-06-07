@@ -48,4 +48,13 @@ export class DashboardComponent {
       isBadge: true,
     },
   ];
+  tableTokens = {
+    primaryColor: '#2563eb',
+    successBackground: '#dcfce7',
+    successColor: '#15803d',
+    dangerBackground: '#fee2e2',
+    dangerColor: '#b91c1c',
+    spacing: '0.625rem',
+    borderRadius: '9999px',
+  };
 }
