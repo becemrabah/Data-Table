@@ -1,24 +1,41 @@
-<div *ngIf="loading" class="loading">Loading...</div>
-<table *ngIf="!loading">
-  <thead>
-    <tr>
-      <th *ngFor="let col of columns">
-        {{ col.label }}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of data">
-      <td *ngFor="let col of columns">
-        <ng-container *ngIf="col.isBadge; else defaultCell">
-          {{ row[col.key] }}
-        </ng-container>
-        <ng-template #defaultCell>
-          {{ row[col.key] }}
-        </ng-template>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="!loading && data.length === 0" class="empty">No data found</div>
+<div class="table-wrapper">
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns" (click)="col.sortable && sort(col.key)">
+          {{ col.label }}
+          <span *ngIf="sortKey === col.key">
+            {{ sortDirection === "asc" ? "▲" : "▼" }}
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of paginatedData">
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="col.isBadge; else defaultCell">
+            <span
+              class="badge"
+              [class.active]="row[col.key] === 'Active'"
+              [class.inactive]="row[col.key] === 'Inactive'"
+            >
+              {{ row[col.key] }}
+            </span>
+          </ng-container>
+          <ng-template #defaultCell>
+            {{ row[col.key] }}
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!loading && sortedData.length === 0" class="empty">
+    No data found
+  </div>
+  <div class="pagination">
+    <button (click)="prevPage()">Prev</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()">Next</button>
+  </div>
+</div>

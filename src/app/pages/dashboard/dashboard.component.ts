@@ -45,6 +45,7 @@ export class DashboardComponent {
       key: 'status',
       label: 'Status',
       sortable: true,
+      isBadge: true,
     },
   ];
 }
