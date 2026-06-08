@@ -27,7 +27,7 @@ It supports sorting, filtering, pagination, custom rendering, and design tokens.
 
 npm install
 
-4. Run the project
+3. Run the project
 
 ng serve
 
