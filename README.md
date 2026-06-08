@@ -1,27 +1,40 @@
-# DataTable
+# Angular Data Table Component
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+A reusable, generic data table built with Angular and TypeScript.
+It supports sorting, filtering, pagination, custom rendering, and design tokens.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Features
 
-## Code scaffolding
+- Generic dataset support (`T`)
+- Column sorting (ASC / DESC)
+- Global search across all columns
+- Pagination
+- Loading & empty states
+- Custom badge rendering
+- Design tokens for styling
+- Strict TypeScript (no `any`)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Run Locally
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Install Angular CLI (if not installed)
+   npm install -g @angular/cli
 
-## Running unit tests
+2. Install dependencies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm install
 
-## Running end-to-end tests
+4. Run the project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ng serve
 
-## Further help
+Open:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+http://localhost:4200
+```
+
+---
