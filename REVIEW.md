@@ -30,35 +30,33 @@ this.users = data;
 
 Problem:
 
-res.json() returns a Promise, so this.users becomes a Promise instead of actual data, causing runtime failures.
+ res.json() returns a Promise, so this.users becomes a Promise instead of actual data, causing runtime failures.
 
 Fix:
-const data = await res.json();
-this.users = data;
-
-Issue 2: No error handling in async call
-Problem:
+  const data = await res.json();
+  this.users = data;
 
 Issue 2: No error handling in async call
 
 Problem:If the API fails, the method will crash silently or leave the component in an inconsistent state.
 
 Fix:
-async loadUsers() {
-try {
-const res = await fetch('/api/users');
+   
 
-    if (!res.ok) {
-      throw new Error(`HTTP error: ${res.status}`);
+    async loadUsers(): Promise<void> {
+     try {
+       const res = await fetch('/api/users');
+       if (!res.ok) {
+       throw new Error(`HTTP error: ${res.status}`);
+      }
+      this.users = await res.json();
+    } catch (error) {
+      console.error('Failed to load users', error);
+      this.users = [];
+
+      }
+
     }
-
-    this.users = await res.json();
-
-} catch (error) {
-console.error('Failed to load users', error);
-this.users = [];
-}
-}
 
 Issue 3: Loose equality (==)
 if (this.filter == null)
